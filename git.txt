@@ -1,0 +1,164 @@
+cd ~                          # change directories to your home directory
+mkdir version-control         # make version-control directory
+cd version-control            # go to version-control directory
+mkdir reflections             # create reflections directory
+cd reflections                # go to reflections directory
+subl lesson_1_reflections.txt # launch sublime with file called lesson_1_reflections.txt 
+(you can replace subl with another editor here if you prefer a different one)
+
+pwd # print working directory - shows what directory you are in
+ls  # list the files in this directory
+ls -al
+ls -a
+
+rm -rf folder_name   # delete folder
+
+git --version
+
+git config ­­global user.name "Your name"
+git config ­­global user.email "youremail@domain.com"
+git config --global --list
+
+git clone https://github.com/udacity/asteroids.git
+
+git log
+git log -n number (최근 몇 개만 보여줌)
+git log --stat
+git log --graph --oneline
+git log --graph --oneline master branch1 ..
+
+diff -u game_new.js game_old.js
+git diff FIRST_commit_ID1 SECOND_commit_ID2
+git show commit_ID : 해당 commit과 그 parent와의 비교
+
+git checkout commit_ID
+
+git status
+
+echo "Test Git Quick Start demo" >> start.txt      // 텍스트파일 생성
+cat start.txt       // 텍스트파일 내용 확인
+git add start.txt      // staging
+git commit -m "Adding start text file"     // commit
+git push origin master      // push
+
+
+1.Setup the Project Folder	
+	pwd
+	mkdir projects 
+	cd projects 
+	pwd
+
+2.Git Configuration
+	git version
+	git config --global user.name "Abe Lincoln"
+	git config --global user.email "mrabe@git.training" 
+	git config --global --list
+
+3.Copy the Repository (clone)
+	# paste in your GitHub HTTPS clone URL
+	git clone https://github.com/prezlincoln/github-demo.git
+	ls
+	cd github-demo
+	ls
+	git status
+
+4.The First Commit
+	echo "Test Git Quick Start demo" >> start.txt ls
+	cat start.txt
+	git status
+	git add start.txt
+	git status
+	git commit -m "Adding start text file" git status
+
+5.Publishing Changes to GitHub (push)   
+	git push origin master
+
+// starting from local environment
+mkdir project
+cd project
+git init new-project (new-project 폴더 안에 .git 폴더 위치함)
+cd new-project
+subl start.txt
+git add start.txt
+git commit -m "Adding start.txt"
+(or) git commit ==> 텍스트에디터로 연결됨
+
+//
+git add . (모든 파일)
+
+//
+git init (현재 존재하는 폴더 내에 .git 폴더 생성함)
+
+//
+git checkout branch_name
+
+// (original - modified)WORKING_DIRECTORY - (staged)STAGING_AREA - (commited)REPOSITORY
+: comparing 2 files : diff -u file1 file2
+: comparing 2 commits : git diff commit_ID1 commit_ID
+: comparing working directory and staging area (modified changes which are not yet staged) : git diff
+: comparing staging area and the most recent commit : git diff --staged
+
+// git reset lesson_2_reflections.txt (staging area 에서 working directory로 되돌리기)
+
+// delete changes in working directory or staging area (any changes which are not yet commited)
+: git reset --hard
+
+// branch
+git branch : 현재의 branches 확인 (*표시 : the branch which is currently checked out)
+git branch -a
+
+git branch branch_name : branch 생성
+git checkout branch_name : checkout
+==> 위 두 commands를 합쳐서 한 줄로!! : git checkout -b new_branch_name
+
+// merge
+git checkout master (merge 하려는 두 branches 중 무조건 하나로 checkout 해야 함 / 그 중에서도 계속 이어나가고자 하는 branch로!!)
+git merge master coins(branch_name) /or/ git merge coins(branch_name)
+((The key is to remember that git merge always merges all the specified branches into the currently checked out branch, creating a new commit for that branch.))
+git branch -d coins(branch_name)  // branch 삭제
+
+// github - new repository
+: new repository 생성 후에 clone 하고 content 들을 만들어가야 할 경우 : README FILE 생성 check!
+: 이미 만들어진 content가 있을 경우 : README FILE 생성 check no!!
+
+// remote
+git remote
+git remote -v
+git remote add remote_name(origin) _url
+git push remote_name(origin) branch_name(master)
+
+// git pull origin master
+: github origin/master branch에서 new commit 한 상태 => local에 어떻게 적용하나?
+: git pull origin master (master branch 보다 origin/master branch가 한 단계 더 앞 선 상태에서 master branch에 병합됨)
+: master branch의 tip point가 한 단계 앞으로 이동하면서 origin/master branch와 동일하게 됨
+: git fetch origin master + git merge origin/master
+
+// local의 master branch에서 new commit + github의 origin/master branch에서 new commit => 두 개를 어떻게 합치나?
+git pull origin master (github의 origin/master branch를 local의 master branch에 병합)
+= git fetch origin master + git merge master origin/master (checked out in master branch 상태에서)
+: git fetch origin master 실행 후 origin/master branch와 master branch가 갈라짐 (확인 by git log --graph --oneline master origin/master)
+==> git merge master origin/master (origin/master branch를 master branch로 병합)
+
+//pull request (Github에서 merge와 같은 기능 // collaboration 시 중요한 기능! 나의 역할이 끝났을때 프로젝트의 책임자에게 pull request를 보내면 그것에 대한 피드백을 줄 수 있고, 책임자의 판단하에 master branch에 병합될 수 있음)
+(local)
+: git branch (branch name)
+: git checkout (branch name)
+: (some changes)
+: git add (file name)
+: git commit
+: git push origin (branch name)
+(git hub)
+: branch -> pull request -> confirm
+
+// local의 master branch에서 새로운 branch 생성(different-oil branch) + github의 origin/master branch에서 새로운 branch 생성(more-oil branch) => 어떻게 합치나?
+// pull request (나의 pull request와 다른 사람의 pull request가 conflict 일으킬 때)
+: 상대방 pull request를 받아들임 (github의 origin/master branch와 상대방의 more-oil branch를 병합 => origin/master branch update 되었으므로, more-oil br 삭제)
+: (local에서) git pull origin master (gitgub의 origin/master branch가 local의 master branch와 병합)
+: git checkout different-oil
+: git merge master (different-oil branch에 master branch를 병합함)
+: 파일 수정 
+: git add (file_name)
+: git commit
+: git push origin different-oil
+: github에서 different-oil 관련해서 다시 pull-request
+: local에서 git checkout master => git pull origin master

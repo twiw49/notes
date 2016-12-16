@@ -1,0 +1,458 @@
+$ HTML 문서 구조 
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width initial-scale=1.0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="style.css">  //link+TAB (subl 단축)
+	<body>
+		<div class="wrapper">
+			<header>
+				<h1></h1>
+				<img>
+				<nav>
+					<img>
+					<ul>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</nav>
+			</header>
+			<main>
+				<section class="col_1">
+					<h1></h1>
+					<article></article>
+					<article></article>
+				</section>
+				<section class="col_2">
+					<h1></h1>
+					<article></article>
+					<article></article>
+				</section>
+				<aside class="col_3">
+					<img class="image_frame">
+					<h2></h2>
+					<article></article>
+				</aside>
+			</main>
+			<footer>&copy; 2016</footer>
+		</div>
+		<script></script>
+	</body>
+</html>
+
+
+$ meta
+	<meta name="viewport" content="width=device-width initial-scale=1.0">
+
+$ normalize.css
+	<link rel="stylesheet" href="normalize.css">
+
+$ style file
+	<link rel="stylesheet" href="style.css">
+
+$ google font
+	https://fonts.google.com/
+	body {
+		font-family: (font_name), (defaul_font_name);
+		font-size: 1.125rem;
+		font-weight: 400;
+		line-height: 1.618;
+	}
+
+$ outline / box-sizing / body margin
+	* {
+		-webkit-font-smoothing: antialiased;
+		outline: 1px solid red;
+		box-sizing: border-box; // box 크기에 padding 까지 포함시킴
+	}
+
+	body {
+		margin: 0;
+		height: 100%;
+	}
+
+$ javascript and jQuery
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="jquery-3.1.1.min.js"></script>
+    <script src="scripts.js"></script>
+
+$ font
+	1. google font
+	2. html : <link>
+	3. font-family
+	4. font stack
+		www.cssfontstack.com
+	5. font size
+	6. line height
+		body {
+			font-family: Raleway,"Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Tahoma,sans-serif;
+			font-size: 1.125rem;
+			line-height: 1.618;
+		}
+	7. headings
+		h1 {
+			font-weight: 900;
+			font-size: 3.3rem;
+			line-height: 1.35;
+			margin: 0.8em 0;
+		}
+		h2 {
+			font-weight: 800;
+			font-size: 2.3rem;
+			line-height: 1.45;
+			margin: 1.0em 0;
+		}
+		h3 {
+			font-weight: 700;
+			font-size: 1.85rem;
+			line-height: 1.6;
+			margin: 1.3em 0;
+		}
+		h4 {
+			font-weight: 700;
+			font-size: 1.55rem;
+			line-height: 1.7;
+			margin: 1.5em 0;
+		}
+		h5 {
+			font-weight: 600;
+			font-size: 1.4rem;
+			line-height: 1.6;
+			margin: 1.6em 0;
+		}
+		h6 {
+			font-weight: 500;
+			font-size: 1.25rem;
+			line-height: 1.6;
+			margin: 1.6em 0;
+		}
+
+$$$ Layout
+
+using REM unit : browser 기본 폰트 크기의 배수 (if 16px, 1rem = 16px)
+1.sizing
+2.spacing
+3.alignment
+4.responsive
+
+1.sizing
+	px, em, rem, %, vw, vh
+	width / min-width / max-width
+	height / min-height / max-height
+
+	width : 100vw // viewport의 width의 100%
+	height: 100vh // vierwport의 height의 100%
+
+	width : 100% // viewport 크기의 100% (자신의 원래 크기보다 더 커질 수 있음)
+	
+	max-width : 100% 
+	// viewport 크기의 100% (자신의 원래 크기보다 더 커지지 않음)
+	// img 상위 element가 있는 경우 그 element 크기의 100%
+	
+	width: 100%;
+	max-width: 50rem; 
+	// viewport 크기의 100% (정해진 max-width 크기보다 더 커지지 않음)
+
+	min-height : 10rem; 
+	// 최소 높이를 정하고, 그 보다 큰 경우 컨텐트의 내용에 맞게 확대됨
+
+	$ header "Ourname" 숨김 (logo와 겹치기 때문에)
+		.hidden {
+			clip: rect(1px, 1px, 1px, 1px);
+			position: absolute !important;
+			height: 1px;
+			width: 1px;
+			overflow: hidden;
+		} 
+
+	$ wrapper width 설정하기
+		.wrapper {
+			width: 100%;
+			max-width: 80rem;
+		}
+
+	$ col width 설정하기 
+		.col_01 {
+			width: 62.5%;
+		}
+		.col_02 {
+			width: 37.5%;
+		}
+
+	$ img width 설정하기 / img height 를 auto로 설정하기
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+
+2.alignment
+	$ .col_01 : float - left
+	$ .col_02 : float - right
+	
+	$ clear - one way
+		// 마지막 float element 바로 다음에 <div class="clear"></div> 삽입
+		.clear {
+			clear: both;	
+			// float - left 인 경우, clear: left; 
+			// float - right 인 경우, clear: right;
+			// 둘 다 있는 경우. clear: both;
+		}
+	$ clear - the other way
+		float element의 parent element에 class="clearfix" 삽입
+		.clearfix:before,
+		.clearfix:after {
+			content: " ";
+			display: table;
+		}
+		.clearfix:after {
+			clear: both;
+		}
+
+	$ centering elements
+		// block element => margin: 0 auto;
+		// inline element => text-align: center;
+ 		// div : block element
+ 		// text/image : inline element
+ 		// 확인 by dev tool - computed - display
+
+		.wrapper {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		or
+		.wrapper {
+			margin: 0 auto;
+		}
+
+		header, footer {
+			text-align: center;
+		
+3.spacing
+	// margin / padding
+	// margin: (top) (right) (bottom) (left)
+	// margin: (top&bottom) (right&left)
+	// margin: (all sides)
+
+	$ box model
+		* {
+			box-sizing: border-box;
+			// box 크기에 padding 까지 포함시킴
+		}
+	
+	$ body dxfault margin : 8px로 지정되어 있음
+		body {
+			margin: 0;
+		}
+
+	$ padding
+		.wrapper {
+			padding: 5rem;
+		}
+		.col_02 {
+			padding-left: 5rem;
+		}
+		header, footer {
+			padding: 2rem;
+		}
+	
+	$ wrapper border
+		.wrapper {
+			border-width: 0.1875rem; // 3px
+			border-style: solid;
+		}
+	
+	$ image_frame => border and padding
+		.image_frame {
+			padding: 2rem;
+			border: 0.1875rem solid;
+		}
+
+	$ col_01 upper space 없앰
+	// <h1> : 기본적인 margin 설정되어 있음
+		.col_01 > :first-child {
+			margin-top: 0;
+		}
+
+4.responsive
+	$ media query
+		// body : 80rem + 2.5rem * 2
+		@media (max-width: 85rem) {
+			body {
+				padding: 0 2.5rem;
+			}
+		}
+
+	$ shrink space
+		@media (max-width: 80rem) {
+			.wrapper {
+				padding: 4.5rem;
+			}
+			.col_02 {
+				padding-left: 4.5rem;
+			}
+		}
+
+		@media (max-width: 75rem) {
+			.wrapper {
+				padding: 4rem;
+			}
+			.col_02 {
+				padding-left: 4rem;
+			}
+		}
+
+		@media (max-width: 70rem) {
+			.wrapper {
+				padding: 3.5rem;
+			}
+			.col_02 {
+				padding-left: 3.5rem;
+			}
+		}
+
+		@media (max-width: 65rem) {
+			.wrapper {
+				padding: 3.0rem;
+			}
+			.col_02 {
+				padding-left: 3.0rem;
+			}
+		}
+
+	$ single column layout
+		// 960px / 16 = 60rem
+		@media (max-width: 60rem) {
+			h1 {
+				font-size: 5.6vw;
+			}
+			h2 {
+				font-size: 3.9vw;
+			}
+			.wrapper {
+				padding: 4rem;
+			}
+			.col_01, .col_02 {
+				float: none;
+				width: 100%;
+			.col_02 {
+				padding-left: 0;
+				padding-top: 4rem;
+			}
+		}
+
+	$ more shrink
+		@media (max-width: 55rem) {
+			.wrapper {
+				padding: 3.5rem;
+			}
+		}
+
+		@media (max-width: 45rem) {
+			h1 {
+				font-size: 6.5vw;
+			}
+			h2 {
+				font-size: 5vw;
+			}
+			body {
+				padding: 0;
+			}
+			.wrapper {
+				padding: 3rem;
+			}
+		}
+
+		@media (max-width: 35rem) {
+		.wrapper {
+			padding: 2.5rem;
+		}
+	
+
+$ Colors and Background
+// https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+// background-color
+// type: name / hex / rbga
+// rgba - alpha : 1 = 투명도 없음 / 0 = 완전 투명
+
+$ body - background color 변경
+	body {
+		background-color: #75A1A0;
+	} 
+
+$ wrapper - color 변경
+	.wrapper {
+		background-color: #CEC9B6;
+	}	
+
+* image_frame - color 변경
+	.image_frame {
+		background-color: #443D3B;
+	}
+$ text color 변경
+	body {
+		color: #3A3F3F;
+	}
+	a, a:link, a:visted {
+		color: #864200;
+	}
+	a:hover, a:active {
+		color: #34918F;
+	
+$ header, footer
+	//Accessibility
+	//: chrome dev tool - Audits - Run
+	//: chrome dev tool - Accessibility Properties
+	header, footer {
+		color: #003837;
+	}
+
+$ background image
+	html, body {
+		height: 100%;
+	}
+	body {
+		background-image: url("images/bg_one.jpg");
+		
+		background-repeat: no-repeat;
+		//OR
+		background-repeat: repeat-x;
+		//OR
+		background-repeat: repeat-y;
+		//REPEAT
+		background-repead: repeat;
+
+		background-position: right bottom;
+		//OR
+		background-position: center center;
+	}
+
+	.wrapper {
+		background-image: url("images/bg_two.jpg");
+	}
+
+$ border 
+	// border: (width) (style) (color)
+	// border-width
+	// border-style
+	// border-color
+	
+	.wrapper {
+		border-color: #D8D4C3
+	}
+
+	.image_frame {
+		border-color: #D8D4C3
+
+$ shadow
+	//box-shadow: (x-offset) (y-offset) (blur) (spread) (color)
+	.wrapper {
+		box-shadow: 0.625rem 0.625rem rgba(58,89,87,0.5);
+	}
+
+	//text-shadow
+	.heading_shadow {
+		text-shadow: 0.0625rem 0.0625rem #D0CBB8, 0.125rem 0.125rem #ABA076;
+	}

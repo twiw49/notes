@@ -1,0 +1,411 @@
+<script src="script.js"></script>
+
+<script>
+// variable declaration
+var item,
+		item2;
+
+// variable datatype
+typeof false // boolean
+typeof "false" // string
+
+// 5 primary datatype
+	var name = "John", // string
+			age = 32, // number : integer
+			height = 180.2, // number : float
+			married = false, // boolean
+			age = null, // null 
+			car; // undefined
+
+// 2 composite datatype
+// list or array
+	var li1 = ["John", "Marie", false, 32];
+	var li2 = [];
+	var li3 = new Array(12, false);
+		// properties
+			li1.length
+		// methods
+			li1.push("Hi");  // 마지막에 추가됨
+			list.unshift(10);  // 처음에 추가됨
+			li1.pop();  // 마지막 하나 뽑아냄
+			li1.shift();  // 처음 하나 뽑아냄
+			li1.indexOf(32);  // 위치 확인
+	
+	// object
+	var ob1 = new Object();
+	var ob2 = {};
+
+	var person = {};
+	person.name = "James";
+	person.age = 43;
+	person.height = 1.76;
+	person.married = true;
+
+	person["name"] = "Kirk";
+
+	person.car = {};
+	person.car.make = "Honda";
+
+	var person = {
+		name: "Adi",
+		age: 30
+	}
+
+// operators
+=, == (value), === (strict equal), !=, !==
++, -, *, /
++=, -=, *=, /=
+x++, x--, ++x, --x
+>, <, >=, <= 
+&&, ||
+!x
++"3", +true, +false
++"3"+3 // 6
+"3"+3 // "33"
+"abc" + "def"
+
+// if
+// condition ? val1 : val2
+var age = 70;
+age > 20 ? console.log("Not a teen!") : console.log("Teen!");
+
+// loop - for, dowhile (at least once), while
+for (var i = 0; i < 10, i++) {
+	console.log(i);
+}
+
+var i = 0;
+do {
+	console.log(i);
+	i++;
+} while (i < 10);
+
+var i = 0;
+while (i < 10) {
+	console.log(i);
+	i++;
+}
+</script>
+
+
+<script>
+    document.getElementById("id");
+    document.getElementsByTagName("tagName"); //array
+    document.getElementsByClassName("className"); //array
+    document.querySelector("css selector");
+    document.qeurySelectorAll("css selector"); //array
+
+    var salsMotto = document.getElementById("salsMotto");
+    salsMotto.innerHTML = "<em>Math is cool<em>";
+    salasMotto.textContent = "Math is cool";
+
+    var teamMembers = document.getElementsByClassName("team-member");
+    for (var i = 0; i < teamMembers.length; i++) {
+        console.lo g(teamMembers[i].innerHTML);
+    }
+
+    var imgEl = document.getElementById("catpicture");
+    imgEl.src = "http://www.dogs.com/dog.gif";
+    imgEl.setAttribute("src", "http://www.dogs.com/dog.gif");
+
+    var headingEl = document.getElementById("heading");
+    var headingEl = document.querySelector("#heading");
+    headingEl.style.color = "hotpink"
+    headingEl.style.backgroundColor = "salmon";
+    headingEl.style[background-color] = "salmon";
+    handingEl.style.fontFamily = "cursive";
+    handingEl.style.border = "10px ridge #FFFF00";
+
+    var mainEl = document.getElementById("main");
+    mainEl.className += "warning";
+
+    var imgEl = document.createElement("img");
+    imgEl.src = "http://www.cats.com/cat.gif";
+    imgEl.style.width = "100px";
+    imgEl.style.height = "100px";
+    imgEl.className += "cat";
+    document.body.appendChild(imgEl);
+
+    var planetEl = document.createElement("div"); // <div></div>
+    planetEl.className += "planet"; // <div class="planet"></div>
+    planetEl.style.backgroundColor = "yellow"; // <div class="planet" style="background-color:yellow"></div>
+    document.body.appendChild(planetEl); // <body> .... <div class="planet" style="background-color:yellow"></div></body>
+</script>
+
+//addEventListener - click
+<body>
+    <button id="clicker">Boring button</button>
+</body>
+<script>
+    // 1. Find and store the element we want to listen to events on.
+    var clickerButton = document.getElementById("clicker");
+    
+    // 2. Define the function that will respond to the event.
+    var onButtonClick = function() {
+        clickerButton.textContent = "Oh wow, you clicked me!";
+    };
+    // 3. Add the event listener for the element and function
+    clickerButton.addEventListener("click", onButtonClick);
+
+    //2+3
+    clickerButton.addEventListener("click", function() {
+        clickerButton.textContent = "Oh wow, you clicked me!";
+    });
+</script>
+
+MouseEvent : mousedown, mouseup, click, dblclick, mousemove, mouseover, mousewheel, mouseout
+TouchEvent : touchstart, touchmove, touchend, touchcancel
+KeyboardEvent : keydown, keypress, keyup
+FormEvent : focus, blur, change, submit
+WindowEvent : scroll, resize, hashchange, load, unload
+
+//addEventListener - mousemove    
+<style>
+  .beard {
+    background: black;
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    border-radius: 2.5px;
+  }
+</style>
+<img id="face" src="https://www.kasandbox.org/programming-images/creatures/Winston.png">
+<script>
+  // 1. Find and store the element we want to listen to events on.
+  var face = document.getElementById("face");
+  // 2. Define the function that will respond to the event.
+  var onMouseMove = function(e) {
+      var beard = document.createElement("div");
+      beard.className = "beard";
+      document.body.appendChild(beard);
+      beard.style.top = e.clientY + "px";
+      beard.style.left = e.clientX + "px";
+  };
+  // 3. Add the event listener for the element and function
+  face.addEventListener("mousemove", onMouseMove);
+</script>
+
+
+//addEventListener - click
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Processing forms with events</title>
+	</head>
+	<body>
+		<div>
+			<label>What's your name?
+				<input id="name" type="text">
+			</label><br>
+			<label>What language do you speak?
+				<select id="lang">
+					<option value="en">English</option>
+					<option value="es">Spanish</option>
+					<option value="plt">Pig-latin</option>
+				</select>
+			</label><br>
+			<button id="button" type="button">Greet me, please!</button>
+			<div id="message"></div>
+		</div>
+		<script>
+			// Step 1: Find the element we want the event on
+			var button = document.getElementById("button");
+			// Step 2: Define the event listener function
+			var onButtonClick = function() {
+				var name = document.getElementById("name").value;
+				var lang = document.getElementById("lang").value;
+				var greeting;
+					if (lang === "es") {
+						greeting = "Hola, " + name;
+					} else if (lang === "plt") {
+						greeting = "Ello-hay, " + name;
+					} else {
+						greeting = "Heyaz, " + name;
+					}
+				document.getElementById("message").textContent = greeting;
+			};
+			// Step 3: Attach event listener to element
+			button.addEventListener("click", onButtonClick);
+		</script>
+	</body>
+</html>
+
+//PreventDefault
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Preventing default behavior of events</title>
+	</head>
+<body>
+	<a id="ohnoes" href="https://www.kasandbox.org/programming-sounds/rpg/giant-no.mp3">What does Oh Noes say?</a>
+	<script>
+		// Step 1: Find the element we want the event on
+		var ohnoesEl = document.getElementById("ohnoes");
+		// Step 2: Define the event listener function
+		var onOhNoesClick = function(e) {
+			e.preventDefault();	// <a> element를 클릭하면 새 창이 뜨는 게 defalut인데 그것을 방지함
+			var audioEl = document.createElement("audio");
+			audioEl.src = "https://www.kasandbox.org/programming-sounds/rpg/giant-no.mp3";
+			audioEl.autoplay = "true";
+			document.body.appendChild(audioEl);
+		};
+		// Step 3: Attach event listener to element
+		ohnoesEl.addEventListener("click", onOhNoesClick);
+		</script>
+	</body>
+</html>
+
+//HTML DOM events
+//http://www.w3schools.com/jsref/dom_obj_event.asp
+
+#1.
+<button id="submit" onclick="console.log("Button clicked!");">Click me</button>
+
+#2.
+<script>
+var submitBtn = document.getElementById("submit");
+submitBtn.addEventListener("click", function() {
+	console.log("Button clicked");
+});
+</script>
+
+#3.
+<script>
+var container = document.querySelector(".container");
+container.addEventListener("mouseenter", mounseEnterContainer);
+var mouseEnterContainer = function() {
+	console.log("there was a mouseenter event triggered.");
+	container.removeEventListener("mouseenter", mouseEnterContainer);
+};
+</script>
+
+//mouseEvent - onclick (inline)
+<body>
+	<button onclick="myFunction()">Click me</button>
+	<p id="demo"></p>
+	<script>
+		var myFunction = function() {
+			document.getElementById("demo").innerHTML = "Hello World";
+		}
+	</script>
+</body>
+
+//keybordEvent
+<body>
+	<input type="text" size="40" onkeypress="myFunction(event)">  
+	<!-- onkeypress / onkeydown / onkeyup -->
+	<p id="demo"></p>
+	<script>
+	var myFunction = function(event) {
+		var x = event.which; 
+		/* event.which = event.keyCode = event.charCode : code*/  
+		/* event.key : character */
+		document.getElementById("demo").textContent = x;
+	}
+	</script>
+</body>
+
+//window
+<script>
+    var infoDiv = document.getElementById("info");
+    console.log(window);
+    console.log(window.location);
+    infoDiv.textContent += "The URL of this page is " + window.location.href;
+    infoDiv.textContent += "The user agent is " + window.navigator.userAgent;
+    infoDiv.textContent += " This webpage is " + window.outerWidth + " by " + window.outerHeight;
+</script>
+
+//timer - setInterval / clearInterval
+<body>
+	<div><h1>Oh noes, the world will end in<span id="countdown">5</span>seconds!</h1></div>
+	<script>
+		// Step 1. What element do we want to animate?
+		var countdown = document.getElementById("countdown");
+		// Step 2. What function will change it each time?
+		var countItDown = function() {
+			var currentTime = parseFloat(countdown.textContent);
+			if (currentTime > 0) {
+				countdown.textContent = currentTime - 1;
+			} else {
+	    	window.clearInterval(timer);	
+			}
+		};
+		// Step 3: Call that on an interval
+		var timer = window.setInterval(countItDown, 1000);
+	</script>
+</body>
+
+//stopwatch - window.setInterval / window.clearInterval
+<body>
+	<button id="stop-button" type="button">Stop</button>
+		<p><span id="seconds">0</span> seconds have gone by!</p>
+	<script>
+		// Make it count up on a timer, calling this function
+		var seconds = document.getElementById("seconds");
+		var countUp = function() {
+    	var currentTime = parseFloat(seconds.textContent);
+    	seconds.textContent = currentTime + 1;
+		};
+		var count = window.setInterval(countUp, 1000);
+		// How can you make it stop counting?
+		var stopCountUp = function() {
+    	window.clearInterval(count);
+		};
+		var stopButton = document.getElementById("stop-button");
+		stopButton.addEventListener("click", stopCountUp);
+	</script>
+</body>
+
+//JS animation - senInterval
+<script >
+	var ohnoes = document.getElementById("ohnoes");
+	ohnoes.style.width = "50px";
+	var makeItBigger = function() {
+		ohnoes.style.width = (parseFloat(ohnoes.style.width) + 1) + "px";
+	};
+	window.setInterval(makeItBigger, 1000/30);
+</script>
+
+//JS animation
+<img id="ohnoes" src="https://www.kasandbox.org/programming-images/creatures/OhNoes.png">
+<script>
+	var ohnoes = document.getElementById("ohnoes");
+	ohnoes.style.width = "50px";
+	var startTime = new Date().getTime();
+	var makeItBigger = function() {
+		var currTime = new Date().getTime();
+		var newWidth = (50 + ((currTime - startTime)/1000) * 30);
+		ohnoes.style.width = newWidth + "px";
+		if (newWidth < 300) {
+			window.requestAnimationFrame(makeItBigger);
+		}
+	};
+	makeItBigger();
+</script>
+
+//JS animation - requestAnimationFrame
+<style>
+	#cat {
+		position: absolute;
+		left: 0px;
+	}
+</style>
+<body>
+	<img id="cat" src="https://www.kasandbox.org/programming-images/misc/cat-walk.gif">
+	<script>
+		var catEl = document.getElementById("cat");
+		var startTime = new Date().getTime();
+		var walkTheCat = function() {
+			var currTime = new Date().getTime();
+    	var secondsElapsed = ((currTime - startTime)/1000);
+    	var newLeft = secondsElapsed * 100;
+    	catEl.style.left = newLeft + "px";
+    	if (newLeft < 400) {
+        window.requestAnimationFrame(walkTheCat);
+    	}
+		};
+		walkTheCat();
+	</script>
+</body> 

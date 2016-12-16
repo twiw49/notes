@@ -1,0 +1,82 @@
+//CSS animation
+<style>
+	@keyframes getbigger {
+		from {
+			width: 50px;
+		} to {
+			width: 300px;
+		}
+	}
+
+	@-webkit-keyframes getbigger {
+		from {
+			width: 50px;
+		} to {
+			width: 300px;
+		}
+	}
+
+	#ohnoes {
+		animation-name: getbigger;
+		animation-duration: 3s;
+		/* vendor prefixes */
+		-webkit-animation-name: getbigger;
+		-webkit-animation-duration: 3s;
+	}
+
+	#countdown:hover {
+		font-size: 150px;
+		transition: font-size 1s linear;
+	}
+</style>
+
+<div>
+	<img id="ohnoes" src="https://www.kasandbox.org/programming-images/creatures/OhNoes.png">
+	<h1>Oh noes, the world will end in <span id="countdown">30</span> seconds!</h1>
+</div>
+
+//CSS animation
+<style>
+	div {
+		width: 200px;
+		height: 200px;
+		background-color: coral;
+		animation: square-to-circle 2s .5s infinite cubic-bezier(1, .015, .295 ,1.225) alternate;
+		/*
+		animation-name: square-to-circle;
+		animation-duration: 2s;
+		animation-delay: .5s;
+		animation-iteration-count: infinite;
+		animation-timing-function: cubic-bezier(1, .015, .295 ,1.225);  /// linear;
+		animation-direction: alternate;
+		*/
+	}
+
+	@keyframes square-to-circle {
+		0%  {
+			border-radius:0 0 0 0;
+			background:coral;
+			transform:rotate(0deg);
+		}
+		25%  {
+			border-radius:50% 0 0 0;
+			background:darksalmon;
+			transform:rotate(45deg);
+		}
+		50%  {
+			border-radius:50% 50% 0 0;
+			background:indianred;
+			transform:rotate(90deg);
+		}
+		75%  {
+			border-radius:50% 50% 50% 0;
+			background:lightcoral;
+			transform:rotate(135deg);
+		}
+		100% {
+			border-radius:50%;
+			background:darksalmon;
+			transform:rotate(180deg);
+		}
+	}
+</style>

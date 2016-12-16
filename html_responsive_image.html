@@ -1,0 +1,144 @@
+width : 100% // 화면의 크기에 언제나 맞춰서 크기가 조정됨 (원본 크기보다 더 커질 수도 있음)
+max-width : 100% // 화면의 크기에 맞추면서 조정이 되지만 자신의 원래 크기보다 더 커지지 않음
+width : calc((100% - 10px)/2) // 두 개의 사진을 50% 씩 하되, 두 사진 사이 여백 10px
+width : calc((100% - 10*2px)/3) 
+    img {
+      float: left;
+  	  width: calc((100% - 10*2px)/3);
+  	  margin-right: 10px;
+    }
+  	#img3 {
+  		margin-right: 0;
+    }
+
+width / height 
+: 100vw // viewport-width : viewport의 width의 100%
+: 100vh // viewpoer-height : viewport의 height의 100%
+: 100vmin // viewport-width or viewport-height 중 작은 것의 100%
+: 100vmax // viewport-width or viewport-height 중 큰 것의 100%
+
+grunt
+: project 폴더로 이동
+: $ npm init
+: $ npm install grunt --save-dev
+: $ npm install grunt-responsive-images --save-dev
+
+// 로고를 화면 정중앙에 위치
+<style>
+	body {
+		align-items: center;
+		display: flex;
+		height: 100vh;
+		justify-content: center;
+	}
+</style>
+
+// 로고를 화면 우측 하단에 고정, 배경화면 gradient
+<style>
+	body {
+	  background: url(html5.svg) no-repeat;
+	  background-position: 97% 95%;
+	  background-size: 5%;
+	  height: 100vh;
+	  margin: 0;
+	}
+	html {
+	  background: linear-gradient(#000, white) no-repeat;
+	  height: 100vh;
+	}
+</style>
+
+// 배경사진이 화면을 꽉 차게
+<style>	
+	body {
+	  background-image: url(albino_kookaburra.jpg);
+	  background-repeat: no-repeat;
+	  background-size: cover;
+
+	  align-items: center;
+	  display: flex;
+	  height: 100vh;
+	  justify-content: center;
+	  
+	  font-size: 10vw;
+	  font-family: "Roboto Condensed";
+	  text-shadow: 5px 5px 15px #333;
+	  margin: 0;
+	}
+</style>
+
+// 화면 크기에 따라 다른 해상도 사진으로 변경
+<style>
+    body {
+      align-items: center;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      margin: 0;
+    }
+    span {
+      background-image: url(koala.jpg);
+      background-size: cover;
+      height: 50vw;
+      transition: background-image 2s;
+      width: 50vw;
+    }
+    @media screen and (max-width: 500px) {
+      span {
+        background-image: url(koala_crop.jpg);
+      }
+    }
+</style>
+<span></span>
+
+
+// 화면의 크기가 일정 이상 커졌을 경우에만 사진이 보임
+<style>
+    span.koala {
+      background-image: url(koala.jpg);
+    }
+    span.photo {
+      background-size: cover;
+      float: left;
+      margin: 0 2vw 1vw 0;
+      height: 50vw;
+      position: relative;
+      top: 3px;
+      transition: all 0.5s;
+      width: 50vw;
+    }
+    @media screen and (max-width: 500px) {
+      span.photo {
+        background-image: none;
+        height: 0;
+        margin: 0;
+        width: 0;
+      }
+    }
+ </style>
+ <span class="koala photo"></span>
+
+ //html - unicode setting
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+ //weloveiconfonts
+ <style>
+ 	@import url(http://weloveiconfonts.com/api/?family=zocial);
+	
+	/* zocial */
+	[class*="zocial-"]:before {
+			font-family: 'zocial', sans-serif;
+	}
+ </style>
+ <body>
+	<!-- Single Element -->
+	<span class="zocial-dribbble"></span>
+       
+ 	<!-- Group of Elements -->
+	<ul>
+	  <li class="zocial-twitter"></li>
+	  <li class="zocial-flickr"></li>
+	  <li class="zocial-lastfm"></li>
+	  <li class="zocial-reddit"></li>
+	</ul>
+ </body>

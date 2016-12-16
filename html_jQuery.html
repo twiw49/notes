@@ -1,0 +1,681 @@
+# jQuery 주소 // body 문서 맨 끝에 위치
+
+# jQuery 주요 문구
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+	$("h2").text("CROCODILE ATTACK!");		//텍스트 변경
+	$("p").html("The crocodiles are coming - <strong>oh noess</strong>!!");		//html 변경
+	$("p").css("color", "green");		//css 설정
+	$("h1").css("font-family", "monospace");
+	$("h1").css( {"font-family": "monospace", color: "red"} );
+	
+	$("h2").addClass("crocodile");		//class 삽입
+	$("h2").hasClass("crocodile")		//true or false
+	$("hw").removeClass("crocodile")		//class 제거
+	
+	$("a").attr("href", "https://en.wikipedia.org/wiki/Crocodile");
+	$("img").attr("src", "https://www.kasandbox.org/programming-images/animals/crocodiles.png");
+
+	//appendTo
+	var $p = $('<p style = "color: red;">I love people who love cats.</p>');
+	$p.appendTo("body");
+
+	//appendTo / append / prepend
+	var $newP = $("<p>");
+	$newP.text("The crocodiles have eaten this ENTIRE PAGE!");
+	$newP.addClass("crocodile");
+	$newP.appendTo("body");
+	//append prepend
+	$("body").append($newP);	//body 마지막에
+	$("body").prepend($newP);	//body 처음에
+	
+	//chain
+	$("<p>").text("The crocodiles have eaten this ENTIRE PAGE!").addClass("crocodile").appendTo("body");
+	
+	$("<p>")
+      .text("The crocodiles have eaten this ENTIRE PAGE!")
+      .addClass("crocodile")
+      .appendTo("body");
+
+	$("<img>")
+     .attr("src","https://upload.wikimedia.org/wikipedia/commons/2/29/English_Daisy_(Bellis_Perennis).jpg")
+     .attr("width","100")
+     .attr("alt", "image")
+     .appendTo("body");
+
+
+	//DOM node
+	var headingFromD = document.getElementById("cuteness");
+	headingFromD.innerHTML = "Using .innerHTML";
+	//jQuery collection
+	var headingFromJ = $("#cuteness");
+	headingFromJ.html("Using .html()");
+
+	var $heading = $("#cuteness"); // jQuery collection
+	var headingD = $heading[0]; // jQuery element => DOM node
+	var $headingJ = $(headingD); // DOM node => jQuery element
+
+	// jQuery collection에서 element 하나씩 DOM node로 변환시킨 후 다시 jQuery element로 바꾼 후 jQuery 명령어 ㅅ행
+	var $paragraphs = $('p');
+	for (var i = 0; i < $paragraphs.length; i++) {
+      var element = $paragraphs[i]; // DOM node
+      var $paragraph = $(element);
+      $paragraph.html($paragraph.html() + "..huzzah!");
+	}
+	
+	$paragraphs.each(function(index, element) {
+	  //index: array의 index
+	  //element: arrary의 element
+	  //두 항 모두 안 넣어도 되나, element를 넣기 위해서는 앞에 index를 반드시 넣어줘야 함
+	  //첫번째 항은 무조건 index로 인식하기 때문
+      var $paragraph = $(this);
+      console.log(element === this);
+      $paragraph.html($paragraph.html() + "..wowee!");
+	});
+
+
+	// click event
+	var crocodilize = function() {
+      // Modifying elements
+      $("h2").text("CROCODILE ATTACK!");
+      $("p").html("The crocodiles are coming - <strong>oh noess</strong>!!");
+      $("p").css("color", "green");
+      $("h2").addClass("crocodile");
+      $("a").attr("href", "https://en.wikipedia.org/wiki/Crocodile");
+      $("img").attr("src", "https://www.kasandbox.org/programming-images/animals/crocodiles.png");
+	};
+
+	$("#croc-button").on("click", function() {
+		console.log("you clicked me!!");
+		crocodilize();
+	});
+
+	//Put images where the mouse clicks
+	$("body").on("click", function(event) {
+      console.log(event);
+		$("<img>")
+			.attr("src", "https://www.kasandbox.org/programming-images/animals/crocodiles.png")
+			.width(100)
+			.css("position", "absolute")
+			.css("top", event.pageY + "px")
+			.css("left", event.pageX + "px")
+			.appendTo("body");
+	});
+
+	//trigget
+	$('#testEle1').on('click', function() {
+		++sumtest;
+		$('#testspan').text(sumtest);
+	});
+	$('#testEle2').on('click', function() {
+		$('#testEl1').trigger('click');
+	});
+</script>
+
+
+# Draw dots where the mouse clicks
+<style>
+   .dot {
+       border-radius: 10px;
+       background: black;
+       position: absolute;
+       width: 10px;
+       height: 10px;
+   }
+</style>
+<script>
+$("#dog-pic").on("click", function(event) {
+   var $dot = $("<div></div>")
+   .addClass("dot")
+   .css("top", event.pageY+"px")
+   .css("left", event.pageX+"px");
+   .appendTo("body")
+});
+</script>
+
+
+# Event : MouseClick
+<script>
+// The following code adds a 'click' handler
+//  to all <img> elements currently in the page
+$("img").on('click', function() {
+   // "this" refers to the element that was clicked on
+   // get the current "src" for the image that was clicked on
+   var imgSrc = $(this).attr("src");
+   // change the src URL to the seedling image
+   var seedlingImgSrc = imgSrc.replace("seed.", "seedling.");
+   // update "src" to point to the seedling image
+   $(this).attr("src", seedlingImgSrc);
+});
+</script>
+
+
+# Event : MouseUp/MouseDown
+<script>
+// changes the color of the square to green if mouse cursor
+// is inside the square when the 'mousedown' occurs
+$("#square").on("mousedown", function() {
+	$(this).css('background', 'green');
+});
+
+// changes the color of the square to orange if mouse cursor
+// is inside the square when the 'mouseup' occurs
+$("#square").on("mouseup", function() {
+	$(this).css('background', 'orange');
+});
+</script>
+
+
+# Event : MouseMove
+<script>
+// Whenever the mouse moves and the mouse cursor is
+// inside the document Hopper's position will update
+// to follow the cursor.
+$(document).mousemove(function(event) {
+   $("#hopper").css({
+		left: event.pageX,
+		top: event.pageY
+   });
+})
+</script>
+
+
+# Event : MouseEnter/MouseOut
+<script>
+// When mouse enters leaf image,
+// change cursor to hand & image to hover image
+$("img").on('mouseenter', function(){
+   $(this).attr("src", "https://www.kasandbox.org/programming-images/avatars/leaf-green.png");
+   $(this).css("cursor", "pointer");
+});
+
+// When mouse leaves leaf image,
+// change cursor to default & image to default image
+$("img").on('mouseleave', function(){
+   $(this).attr("src", "https://www.kasandbox.org/programming-images/avatars/leaf-grey.png");
+   $(this).css("cursor", "default");
+});
+</script>
+
+
+# Event : Key
+<style>
+.lowlight
+{
+    background: #ffffff;
+}
+.highlight
+{
+    background: #ffff00;
+}
+.key-up
+{
+    background: #f2f2f2;
+}
+.key-down
+{
+    background: #eafaea;
+}
+</style>
+
+<input type="text" id="you" class="lowlight" size="40px" />
+
+<script>
+/** CONSTANTS **/
+var ENTER_KEY = 13;
+
+var greetUser = function(str) {
+   document.getElementById("greeting").textContent = str;  // greeting element에 str 표시!
+};
+
+var makeNameCase = function(str) {
+   return (str.charAt(0).toUpperCase() + str.substring(1, str.length).toLowerCase()); // str의 첫 알파벳은 대문자 나머지는 소문자로 변환!
+};
+
+// When input receives focus,
+// add a CSS class that highlights it
+$("input").on("focus", function() {
+   $(this).removeClass("lowlight");
+   $(this).addClass("highlight");
+});
+
+// When input loses focus (blurs),
+// revert class names to original
+$("input").on("blur", function() {
+   $(this).removeClass("highlight");
+   $(this).removeClass("key-up");
+   $(this).removeClass("key-down");
+   $(this).addClass("lowlight");
+});
+
+// When keypress event is triggered and
+// the key is the enter key,
+// clear the input and display name greeting
+$("input").on("keypress", function(key) {
+   if ( key.keyCode === ENTER_KEY )
+   {
+       greetUser("Hello, " + makeNameCase($(this).val()) +  "!");
+       $(this).val("");
+       $(this).blur();
+   }
+});
+
+// When keydown event is triggered, change classes
+$("input").on("keydown", function(key) {
+   $(this).removeClass("activelight");
+   $(this).removeClass("highlight");
+   $(this).removeClass("key-up");
+   $(this).addClass("key-down");
+});
+
+// When keyup event is triggered, change classes
+$("input").on("keyup", function(key) {
+   $(this).removeClass("key-down");
+   $(this).addClass("key-up");
+});
+</script>
+
+
+# TouchEvent
+<script>
+// touchstart events when you first press the screen with
+// your finger
+$(document).on("touchstart", function(e) {
+   e.preventDefault();
+
+   // changedTouches contains all of the touchstart events
+   // that occurred at the same time
+   var changedTouches = e.originalEvent.changedTouches;
+
+   for (var i = 0; i < changedTouches.length; i++) {
+		var touch = changedTouches[i];  // touch = DOM node (jQuery element 아님)
+
+		$("<img>").attr({
+  			src: "https://www.kasandbox.org/programming-images/avatars/mr-pink.png",
+  			// each touch has a unique identifier
+  			// we'll assign use this identifier as
+  			// the id so that each touch is paired
+  			// with an <img>
+  			id: touch.identifier
+			}).css({
+  				position: "absolute",
+  				left: touch.pageX,
+  				top: touch.pageY
+			}).appendTo(document.body);
+		}
+	});
+
+// touchmove events occur when you drag your finger
+$(document).on("touchmove", function(e) {
+   e.preventDefault();
+
+   var changedTouches = e.originalEvent.changedTouches;
+
+   for (var i = 0; i < changedTouches.length; i++) {
+		var touch = changedTouches[i];
+		$("#" + touch.identifier).css({
+			left: touch.pageX,
+			top: touch.pageY
+		});
+   }
+});
+
+// touchend events occur when you lift your finger
+$(document).on("touchend", function(e) {
+   e.preventDefault();
+
+   var changedTouches = e.originalEvent.changedTouches;
+
+   for (var i = 0; i < changedTouches.length; i++) {
+       var touch = changedTouches[i];
+       $("#" + touch.identifier).remove();
+   }
+});
+
+// touchcancel events occur when you switch to a different program
+// or do something to interrupt the stream of touch events
+$(document).on("touchcancel", function(e) {
+   e.preventDefault();
+
+   var changedTouches = e.originalEvent.changedTouches;
+
+   for (var i = 0; i < changedTouches.length; i++) {
+       var touch = changedTouches[i];
+       $("#" + touch.identifier).remove();
+   }
+});
+</script>
+
+
+# Event: Drag and Drop - jQueryUI
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<!-- Also include jQueryUI -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script>
+$("#winston").draggable();
+$("#dropzone").droppable({
+      drop: function(event, ui) {
+            $(this).css('background', 'rgb(0,200,0)');
+      },
+      over: function(event, ui) {
+            $(this).css('background', 'orange');
+      },
+      out: function(event, ui) {
+            $(this).css('background', 'cyan');
+      }
+});
+</script>
+
+
+# Event : Form
+//submit
+<form id="quiz-form">
+   <label>
+      What is this? <br>
+         <img src="https://ka-perseus-images.s3.amazonaws.com/325aab611b8b69b51bfeb16ade0af741da7dc3ff.jpg" alt="Reptile"> <br>
+         <select id="quiz-answer">
+            <option value="crocodile">Crocodile</option>
+            <option value="alligator">Alligator</option>
+            <option value="caiman">Caiman</option>
+         </select>
+   </label> <br>
+   <button type="submit">Check Answer</button>
+</form>
+
+<div id="result"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+// When the user submits the form,
+// Check what answer they picked and tell them if they're correct.
+$("#quiz-form").on("submit", function(event) {
+   event.preventDefault();
+   var $answer = $("#quiz-answer");
+   var answer = $answer.val();
+   if (answer === "crocodile") {
+      $("#result").text("Woweeee! You got it! WOOO PARTY!");
+   } else {
+      $("#result").text("Try again!");
+   }
+});
+</script>
+
+//change
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<select>
+    <option>red</option>
+    <option>blue</option>
+    <option>yellow</option>
+    <option>green</option>
+</select>
+
+<p id="pop-up">
+      You changed it to <span id="new-color"></span>!
+</p>
+
+<textarea>I like the color blue.</textarea>
+
+<p id='pop-up-2'>
+    You changed the text.
+</p>
+</div>
+
+<script>
+// This hides the select pop-up at first.
+$('#pop-up').hide();
+
+// This shows the select pop-up if a different color is selected.
+$('select').on('change', function() {
+      var color = $(this).val();
+      $('#new-color').text(color);
+      $("body").css("background", color);
+      $('#pop-up').show();
+});
+
+// This hides the text area pop-up at first.
+$('#pop-up-2').hide();
+
+// This shows the text area pop-up if the text is changed.
+// Notice how the user has to blur away from the text area before this triggers
+$('textarea').on('change', function() {
+   $('#pop-up-2').show();
+});
+</script>
+
+//focuS, blur
+<input id='username-input' type='text'>
+<p id='username-pop-up' class='pop-ups'>
+   For your safety, we recommend that you don't use your real name.
+</p>
+
+<script>
+// This hides all the pop-ups at first.
+$(".pop-ups").hide();
+
+// This pops up a message when the user clicks the username input.
+$("#username-input").on('focus', function() {
+   $("#username-pop-up").slideDown();
+});
+
+// This hides the message when the user clicks somewhere besides the username input.
+$("#username-input").on('blur', function() {
+   $("#username-pop-up").slideUp();
+});
+</script>
+
+
+# Event : Scroll
+<div class="scroll">
+   <p>Scroll me!!</p>
+	<p>Scroll me!!</p>
+	<p>Scroll me!!</p>
+	<p>Scroll me!!</p>
+</div>
+<script>
+// Monitors  the div for a scroll event
+$('.scroll').on('scroll', function() {
+	// Creates a paragraph, adds text and appends it to the body
+	$('<p>').text('you scrolled me!')
+	.css('color','#B11')
+	.appendTo('body')
+	.fadeOut('slow');
+});
+</script>
+
+
+$( document ).read( function() ) {};
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style></style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+		var crocodilize = function() {
+		   $("h2").text("CROCODILE ATTACK!");
+		   $("p").html("The crocodiles are coming - <strong>oh noess</strong>!!");
+		   $("p").css("color", "green");
+		   $("h2").addClass("crocodile");
+		   $("a").attr("href", "https://en.wikipedia.org/wiki/Crocodile");
+		   $("img").attr("src", "https://www.kasandbox.org/programming-images/animals/crocodiles.png");
+		};
+		
+		// script 문구가 body 끝에 오지 않고 head에 와도 이 문구에 의해서 스크립트 문구가 페이지 로딩이 다 끝난 후 작동됨
+		$(document).ready(function() {
+		   crocodilize();
+		});
+	</script>
+</head>
+
+
+Select Form에서 선택한 사항들에 따라 다른 이미지를 출력하기
+<body>
+	<form id="croc-form">
+		<label>
+   		Species?
+			<select name="species">
+    			<option value="freshwater">Freshwater crocodile</option>
+    			<option value="saltwater">Saltwater crocodile</option>
+    			<option value="american">American crocodile</option>
+			</select>
+		</label>
+		<button type="submit">Order</button>
+	</form>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+	// Maps croc species to image URLs
+	var crocImages = {
+		"american": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Crocodylus_acutus_mexico_02-edit1.jpg",
+		"saltwater": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Crocodylus_porosus_4.jpg",
+		"freshwater": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Australia_Cairns_18.jpg"
+	};
+
+	// When the user submits the form, Check what species they ordered and display an image of it
+
+	$("#croc-form").on("submit", function(event) {
+		event.preventDefault(); // submit을 클릭하면 새로운 창이 뜨는 것이 default인데 그것을 막음
+		
+		var $crocSpecies = $("#croc-form [name=species]"); // scope OR
+		var $crocSpecies = $(this).find("[name=species]"); // DOM element
+		
+		var crocSpecies = $crocSpecies.val();
+		var $img = $("<img>");
+		$img.width(100);
+		$img.attr("src", crocImages[crocSpecies]);
+		$img.appendTo("body");
+	});
+	</script>
+</body>
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Challenge: Donut Calculator</title>
+	</head>
+<body>
+
+<h1>Donut Calculator</h1>
+
+<p>Winston eats 3 donuts a day. How many donuts will he eat in his lifetime?</p>
+
+<form id="calculator-form">
+	<label>
+		Winston's final age:
+		<input type="number" name="age">
+	</label>
+	<button type="submit">Calculate</button>
+	<div id="calculator-results"></div>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+var calcDonuts = function(years) {
+	return years * 3 * 365;
+};
+
+$("#calculator-form").on("submit", function(event) {
+	event.preventDefault();
+	var $age = $(this).find("[name=age]");
+	var age = $age.val();
+	var numbers = calcDonuts(age);
+	$("#calculator-results").text("Winston ate "+numbers+ "donuts");
+});
+</script>
+</body>
+</html>
+
+
+# animation
+<script>
+$("#croc-pic").hide();
+$("#croc-text").hide();
+$("#croc-pic").slideDown(1000, function() {
+	$("#croc-text").fadeIn();
+});
+</script>
+
+//
+<script>
+$("#croc-pic").animate({
+   width: "400px",
+   marginLeft: "30px",
+   borderWidth: "10px"
+}, 1500);
+
+$("#croc-text").animate({
+   marginLeft: "30px",
+   fontSize: "3em"
+});
+</script>
+
+<script>
+// This makes the box grow bigger.
+$("#box1").on("click", function(){
+   $("#box1").animate({
+         width: "100px",
+         height: "100px",
+   }, 500);
+});
+
+// This makes the box grow smaller.
+$("#box2").on("click", function(){
+   $("#box2").animate({
+         width: "25px",
+         height: "25px",
+   }, 500);
+});
+
+// This makes the box fade out.
+$("#box3").on("click", function(){
+   $("#box3").animate({
+         opacity: 0.0
+   }, 500);
+});
+
+// This makes the box's padding grow.
+$("#box4").on("click", function(){
+   $("#box4").animate({
+         padding: "10px",
+   }, 500);
+});
+
+// This makes the box move down & right 10px.
+$("#box5").on("click", function(){
+   $("#box5").animate({
+         margin: "10px",
+   }, 500);
+});
+</script>
+
+<script>
+// Monitors the buttons for click events and slides <img> in response
+$('#slide-down').click(function(){
+   $('img').slideDown('fast');
+});
+
+$('#slide-up').click(function(){
+   $('img').slideUp(400);
+});
+
+$('#toggle-sliding').click(function(){
+   $('img').slideToggle('slow');
+});
+</script>
+
+<script>
+// Monitors the buttons for a click events, fades <img> in response
+$('#fade-in').click(function(){
+   $('img').fadeIn('fast');
+});
+
+$('#fade-out').click(function(){
+   $('img').fadeOut(400);
+});
+
+$('#toggle-fading').click(function(){
+   $('img').fadeToggle('slow');
+});
+</script>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>width and height</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		@import url(http://weloveiconfonts.com/api/?family=zocial);
+		/* zocial */
+		[class*="zocial-"]:before {
+  			font-family: 'zocial', sans-serif;
+		}
+
+		body {
+			margin: 0;
+		}
+		div {
+			width: 100vw;
+			height: 100vh;
+			border: 1px solid;
+		}
+		#field1 {
+			background-color: red;
+		}
+		#field2 {
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+<ul>
+  <li class="zocial-twitter"></li>
+  <li class="zocial-flickr"></li>
+  <li class="zocial-lastfm"></li>
+  <li class="zocial-reddit"></li>
+</ul>
+<div id="field1"><a name='field1'></a><a href='#field2'>field1</a></div>
+<div id="field2"><a name='field2'></a><a href='#field1'>field2</a></div>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>
+
+//image sourceset
+/ device pixel ratio(DPR)
+<img  class="dpi"
+      src="images/Den_Haag_2x.jpg"
+      srcset="images/Den_Haag_2x.jpg 2x, images/Den_Haag_1x.jpg 1x"
+      alt="Den Haag Skyline">
+
+/ width (image size)
+/ In fact, if 'sizes' is missing, the browser defaults sizes to 100vw, meaning that it expects the image will display at the full viewport width.
+<img  class="w"
+      src="images/Australia_1280w.jpg"
+      srcset="images/Australia_1280w.jpg 1280w, images/Australia_640w.jpg 640w"
+      alt="Australia from Space">
+
+/ image size를 attr에 알려줌 (viewport width * 0.5)
+/ Just to be clear, it does not actually resize the image - that's what CSS does.
+<style>
+	img {
+		width: 50vw;
+	}
+</style>
+<img src="small.jpg" 
+	srcset="small.jpg 500w, medium.jpg 1000w, large.jpg 1500w" 
+	sizes="50vw" 
+	alt="Wallaby">
+
+/ sizes with mediaQuery 
+<style>
+	img {
+		width: 50vw;
+	}
+	@media screen and (max-width: 250px) {
+		img {
+			width: 100vw;
+		}
+	}
+</style>
+<img src="small.jpg" 
+	srcset="small.jpg 500w, medium.jpg 1000w, large.jpg 1500w" 
+	sizes="(max-width: 250px) 100vw, 50vw" 
+	alt="Wallaby">
+
+/ console에서 현재의 image src 확인
+: $0.currentSrc
+
+// picture - source
+/ browser의 image 파일 종류에 따른 지원 여부에 따라 
+<picture>
+    <source type="image/webp" srcset="kittens.webp">
+    <source type="image/jpeg" srcset="kittens.jpg">
+    <img src="kittens.jpg" alt="Two grey tabby kittens">
+</picture>
+
+/ with mediaQuery
+<picture>
+    <source media="(min-width: 650px)" srcset="kitten-large.png">
+    <source media="(min-width: 465px)" srcset="kitten-medium.png">
+    <img src="kitten-small.png" alt="Cute kitten">
+</picture>
+
+/ with mediaQuery 
+<picture>
+  <source media="(min-width: 1000px)" srcset="kookaburra_large_1x.jpg 1x, kookaburra_large_2x.jpg 2x">
+  <source media="(min-width: 500px)" srcset="kookaburra_medium_1x.jpg 1x, kookaburra_medium_2x.jpg 2x">
+  <img src="kookaburra_small.jpg" alt="The kookaburra: a terrestrial tree kingfisher native to Australia and New Guinea">
+</picture>
