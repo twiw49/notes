@@ -1,0 +1,38 @@
+1. MAMP 설치
+2. MAMP 실행
+	Open Webstart page - Tools - phpMyAdmin - Databases - Create Database - [database_name]
+3. Wordpress 설치 (www.wordpress.org)
+4. Wordpress 설치파일 모두 복사해서, Application - MMAP - htdocs - [folder_name]에 붙여넣기
+5. wp-config-sample.php 실행
+	// ** MySQL settings - You can get this info from your web host ** //
+	/** The name of the database for WordPress */
+	define('DB_NAME', '[database_name]');
+
+	/** MySQL database username */
+	define('DB_USER', 'root');
+
+	/** MySQL database password */
+	define('DB_PASSWORD', 'root');
+
+	https://api.wordpress.org/secret-key/1.1/salt/ <===	여기 가서 랜덤값 생성
+	define('AUTH_KEY',         ';5OrE32J YK*y}h;NF:wp!=bRUNAL9F4@)T*_+R%! a`X52E=7TyH{)w_-y$_1$-');
+	define('SECURE_AUTH_KEY',  '++1ofGH`KG,;{_C/ZYXQf+,L9_O]~6yI^`YC)<fsGLfDi` 6`crHw-#-,)B?LV+X');
+	define('LOGGED_IN_KEY',    'mopwjFOc-O*gMH#-j8l+#rP IdM|XP+yBT_S2Yt0JTbyn0Ci3AJH{TOtr*e`WZ$*');
+	define('NONCE_KEY',        'HctPt`C?v&kf*SQ3T7JA0=@l+fG)l 2c6%a<#V#j,]5)iioQ+7SV3kR`||[56[Xn');
+	define('AUTH_SALT',        '(Rx1C]@Lq*WrPy<@ 7Gnp}*dO`&@;O/U/;vEj$:xj4yPcdBckST:dF53Mmt`gU9/');
+	define('SECURE_AUTH_SALT', 'ieqLJRxr;Wu*W8GoP0|7CmoeI$<U-PTmNt52tw)ibJs%?LV!JI7,#^E7:k(.Lv=D');
+	define('LOGGED_IN_SALT',   '|W$~Z|@gUq<R<7y9+L}=[ip&9/1q4Qt|K+*;34fL ^W~%@3TKZN!6=juy+^NE-oM');
+	define('NONCE_SALT',       '$;-V4Pp8xK()%cZd&jY{-yF%oALQEsl{E$vo[.|8_6 +CbDTO+~AwQ9Rn}!1J3y0');
+
+6. 인터넷 브라우저에서 localhost:8888/[folder_name]
+	wordpress login : admin / chleorb1534
+
+# from loaclhost to live web server
+1. localhost
+	wordpress 관리자(wp-admin) - 일반설정  - url 변경
+	phpmyadmin - 내보내기
+2. web server - control panel
+	Mysql - New Database - Phpmyadmin - sql 파일 가져오기
+3. local
+	wp-config 파일 수정 (database name / user / password)
+	ftp upload

@@ -1,0 +1,193 @@
+1. 필요한 정보 : 데이터 Requirement
+	글 : topic
+		아이디(숫자) : id / int(10)
+		제목(문자) : title / varchar(100)
+		본문(긴문자) : description / text
+		작성자(숫자) : author / int(10)   topic.author = user.id
+		작성일(날짜) : created / datetime
+
+	작성자 : user
+		아이디(숫자) : id / int(10)
+		이름(문자)  : name / varchar(20)
+		비밀번호(문자) : password / varchar(30)
+
+2. 데이터베이스 만들기
+	<!-- terminal or phpmyadmin -->
+	데이터베이스 접속하기 : mysql -hlocalhost - uroot -p
+	데이터베이스 생성
+	테이블 생성
+	데이터 삽입
+	locahost:8080/phpmyadmin : 데이터 확인
+
+	<!-- php -->
+	데이터베이스 connection
+	데이터베이스 선택
+	SELECT / INSERT / DELETE / UPDATE
+
+		<!-- html 위에 위치시킴 -->
+		<?php
+			$conn = mysqli_connect('localhost', 'root', 'twiw1534');
+			mysqli_select_db($conn, 'opentutorials2');
+		?>
+
+		<!-- nav list -->
+		<?php
+			$sql = "SELECT * FROM `topic`";
+			$result = mysqli_query($conn, $sql);
+			$row = mysqli_fetch_assoc($result);	/*하나의 행에 대한 데이터만 갖고 있음*/
+
+			var_dump($result);		/*result에 대한 정보*/
+			print_r($row);	/*한 행의 값들*/
+
+			/*result값이 여러 행일 경우*/
+			while ($row = mysqli_fecth_assoc($result)) {
+				echo '<li><a href="index.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).'</a></li>'."\n";
+			}
+		?>
+
+	URL로 전송된 데이터를 추출하여 새로운 페이지 호출
+		<!-- nav list 각각의 항목에 대한 본문 내용 -->
+		<?php
+			if(empty($_GET['id'])) {
+				echo "Welcome";
+			} else {
+				$id = $_GET['id'];	/* url로부터 정보를 얻게 되는데, 이 경로를 통해 외부의 침입이 들어올 수 있으므로, 그 수단으로 쓰일 수 있는 특수문자들에 대해서 escaping 할 필요가 있음 */
+			$id = mysqli_real_escape_string($conn, $_GET['id']);
+
+			$sql = "SELECT * FROM topic WHERE id =".$id; /*topic.author는 숫자로 표현되기 때문에 이를 user.name으로 바꾸고 싶음*/
+			/* $id에 따라 $sql이 달리지게 되고, $id는 url을 통해서 얻어지는 정보이기 때문에, url을 조작하면 $sql 구문을 조작할 수 있고, 이를 통해 데이터베이스에 침입할 수 있음*/
+			$sql = "SELECT topic.id, title, description, created, user.name FROM topic LEFT JOIN user ON topic.author = user.id WHERE topic.id=".$id;
+			$result = mysqli_query($conn, $sql); /*결과의 행이 하나 밖에 없음*/
+			$row = mysqli_fetch_assoc($result);
+			echo htmlspecialchars($row['title']).'<br>'; /*html/javascript tag가 포함된 경우, escaping 되어 문자열 그대로 표시됨*/
+			echo htmlspecialchars($row['description']).'<br>';
+			echo $row['created'].'<br>'; /*신뢰할 수 있는 정보이므로, escape 필요 없음*/
+			echo htmlspecialchars($row['name']).'<br>';
+		?>
+
+		<!--
+			mysqli_real_escape_string : 정보를 받아서 그 데이터를 데이터베이스에 입력하는 경우
+			htmlspecialchars : 데이터베이스에서 데이터를 출력하는 경우
+		 -->
+
+			<!-- same code -->
+			<?php echo "<h2>".htmlspecialchars($row['title'])."</h2>" ?>
+			<h2><?php echo htmlspecialchars($row['title']) ?></h2>
+			<h2><?=htmlspecialchars($row['title']) ?></h2>
+
+		<?php
+			}
+		?>
+
+3. HTML 코딩
+	템플릿 : bootstrap
+
+	주요 부분
+	<header> 홈페이지 간판
+	<nav> 리스트 - php를 사용
+	<article> 본문 - php를 사용
+
+4. CSS 코딩
+	style tag
+	크롬 개발자도구
+
+	header styling
+	text-align / margin / padding / border
+	nav / article 공간 구분 => width / float
+	list => list-style: none
+
+5. JS  : 사용자의 행동에 따라 HTML의 코드를 변경할 수 있다!
+	특정 element의 css를 변경하는 방법
+		버튼을 누르면 javascript가 실행되서 특정 element에 새로운 class를 추가하고,
+		css에서 그 클래스에 해당하는 스타일을 지정하면, 그 스타일이 적용된다.
+		<style>
+			body.black {
+				background-color : black;
+				color : white;
+			}
+		</style>
+		<body class="black">
+			<input type="button" name="name" value="black" onclick="document.getElementByTagName('body').className ='black'">
+			<input type="button" name="name" value="white" onclick="document.getElementByTagName('body').className =''">
+		</body>
+
+6. DATABASE에 데이터 입력하는 폼만들기
+	<form action="process.php" method="post">
+		<!-- method="get"인 경우, url에 데이터가 포함되어 전송됨 -->
+		<!-- 특정 페이지에서 사용자가 입력한 정보를 서버 쪽으로 이동시키려 할 때, POST METHOD 사용!! -->
+		<p>
+			<label for="title">제목 : </label>
+			<input type="text" name="title" id="title">
+		</p>
+		<p>
+			<label for="author">작성자 : </label>
+			<input type="text" name="author" id="author" value="">
+		</p>
+		<p>
+			<label for="description">본문 : </label>
+			<textarea name="name" id="description" cols="30" rows="10"></textarea>
+		</p>
+		<p>
+			<input type="submit" value="전송">
+		</p>
+	</form>
+
+	<!-- process.php -->
+	<?php
+		print_r($_POST);	/*전송된 정보들을 모두 볼 수 있음*/
+	?>
+
+	<?php
+ 	/*데이터베이스 접속*/
+ 	$conn = mysqli_connect('localhost', 'root', 'twiw1534');
+ 	mysqli_select_db($conn, 'opentutorials2');
+ 	/*저자가 user 테이블 (user.name)에 존재하는지 여부를 체크*/
+ 	$author = mysqli_real_escape_string($conn, $_POST['author']);
+ 	$sql = "SELECT * FROM 'user' WHERE 'name' = '".$author."'";
+ 	$sql = "SELECT * FROM 'user' WHERE 'name' = '{$author}'";
+ 		/* {$author} : $author을 변수로서 인정해줌 */
+ 	echo $sql;
+ 	$result = mysqli_query($conn, $sql);
+ 	var_dump($result);
+ 	var_dump($result->num_rows); /*0 이라면, 결과값 존재 않는다는 것!*/
+ 	/* $result : object
+	   $result->num_rows
+ 	*/
+
+ 	/*존재한다면, user.id 값을 알아낸다.*/
+ 	if ($result -> num_rows != 0) {
+ 		$row = mysqli_fetch_assoc($result);
+ 		var_dump($row['id']);
+ 		/* $row : array
+ 		   $row['id']
+ 		*/
+ 		$user_id = $row['id'];
+ 	/*존재하지 않는다면 저자를 user 테이블에 추가한 후 user.id 값을 알아낸다.*/
+ 	} else {
+		$sql = "INSERT INTO user (id, name) VALUES(NULL, '{$author}')";
+		mysqli_query($conn, $sql);
+		$user_id = mysqli_insert_id($conn);	/*바로 직전의 sql이 insert일 경우*/
+ 	}
+ 	/* 제목, 저자, 본문 등을 topic 테이블에 추가*/
+ 	$title = mysqli_real_escape_string($conn, $_POST['title']);
+	$description = mysqli_real_escape_string($conn, $_POST['description']);
+	$sql  = "INSERT INTO
+				`topic`
+				(`id`, `title`, `description`, `author`, `created`)
+				VALUES
+				(NULL, '{$title}', '{$description}', '{$user_id}', now())";
+	/* 구조와 관련있는 이름을 뜻할때는 ` 사용
+	문자열을 나타낼때는 ' 사용'
+	*/
+	$result = mysqli_query($conn, $sql);
+	/* redirect */
+	header('Location: index.php');
+	?>
+
+7. Refactoring : 복잡도를 낮추는 작업 - 중복의 제거
+	<?php
+		include('conn.php');
+		require('conn.php');
+		require_once('conn.php');
+	?>
+	style 태그를 css 파일로 대체

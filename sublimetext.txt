@@ -1,0 +1,15 @@
+project : side bar에 작업할 폴더 추가
+project 저장/불러오기 : side bar에 작업 폴더들이 바로 뜸
+go to anything : cmd + p
+	파일() 텍스트(#) 함수/클래스(@) 라인(:)
+다중선택
+	cmd + d / cmd + k / cmd + u
+	오른쪽 방향키 : 선택된 문자 맨 뒤로 커서 위치
+	cmd + d : 동일 부분 검색
+	cmd + ctrl + g : 동일 부분 모두 선택
+	cmd + l : 행 전체를 선택
+	alt + 방향키 : 단어단위 이동
+	shift + alt + 방향키 : 단어단위 선택
+	ctrl + m : bracket 짝궁으로 이동
+	ctrl + shift + m : bracket 범위 안의 내용 선택
+	cmd + shift + j : 들여쓰기 레벨이 같은 내용 선택

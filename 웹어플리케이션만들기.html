@@ -1,0 +1,480 @@
+웹 어플리케이션 만들기
+
+# 웹
+	Client - 웹브라우저
+		: HTML / CSS / Javascript
+	Server - 웹서버
+		: 미들웨어(php) / 데이터베이스(MySQL)
+	Client Side Technology : CSS / Javascript
+	Server Side Technology : PHP / MySQL
+
+# 웹 어플리케이션을 만드는 순서
+	구상 / 기획 / 디자인 / 개발 / 테스트		=>	반복
+	start small
+		최소한의 기능으로 시작해서 사용자들의 사용 패턴을 관찰하면서 새로운 기능들을 신중하게 추가해가는 것
+		복잡도 / 지수폭발
+
+# 구상
+	무엇을 만들 것인가?
+		프로그래밍 교육 => 블로그(최신정렬) => 직접구현 => simple organizer => 확장성 => 다시 만들기 => open tutorials => 다중사용자 => 플랫폼 => 페이스북 커뮤니티 => 공동공부 => 생활생산자 모임
+	ㅋㅋㅋ 전략 : 컨텐츠 / 컨테이너 / 커뮤니티
+
+# 기획
+	어떻게 동작해야 하는가?
+	UI 모델링 : 사용자의 입장에서 동작하는 기능을 가상으로  만들어 보는 것
+		UI : User Interface :  사용자가 시스템을 제어하는 조작장치
+		모델링 : 직접 만들기 전에 가상으로 만들어 보는 것
+	모델링 도구
+		손그림
+		Pencil (http://pencil.evolus.vn)
+		balsamiq (http://balsamiq.com)
+		powerpoint
+
+# 인터넷과 웹의 역사
+	웹,이메일,FTP - 인터넷
+	인터넷
+		1960년대 등장 / 네트워크(도로)
+	웹
+		1990년대 등장 (팀버너스리)
+		네트워크를 활용해서 HTML 파일을 주고받을 수 있는 시스템
+		웹브라우저 - (HTTP/HTML) - 웹서버
+
+# (웹)클라이언트 / (웹)서버
+	클라이언트(웹브라우저가 설치되어 있는 컴퓨터) : 요청 (웹페이지를 요청)
+	서버(웹서버가 설치되어 있는 컴퓨터) : 응답 (웹페이지를 제공)
+	웹서버 : Apache / nginx / IIS
+		MAMP(bitnami) : Apache + MySQL + PHP
+
+# 웹서버 설치
+	bitnami.com - PhpMyAdmin - MySQL 비밀번호
+	localhost:8888/index.html => 웹서버의 htdocs(Document Root) 폴더에 있는 index.html을 웹브라우저에게 보내서, 그 문서를 웹브라우저에 띄움
+
+# Apache, PHP, MySQL 제어
+# 프로그래밍 언어 : 컴퓨터와 사람의 소통
+	코드(Code) = 소스(Source) = 컴퓨터가 이해할 수 있도록 사람이 만드는 설계도 / 설계도만 잘 만들면 바로 현실화될 수 있음 / 건축과는 다른 점
+
+# HTML - 웹을 위한 언어
+	HTML(정보) / CSS(디자인) / JS(제어)
+	HTML : Hypertext Markup Language - HTML은 정보다!!
+	Hypertext : 문서와 문서가 서로 연결되어 있음 / Link
+		링크는 HTML의 본질 - HTML의 본질은 웹의 본질
+	Markup Language - 태그
+		Tag : 시작태그 - (컨텐츠)> - 끝태그
+		<!DOCTYPE html> : html 문서가 어떤 html 표준에 따른 것인지
+			HTML5 : <!DOCTYPE html>
+		head : 문서에 대한 기본 정보(설정)
+		body : 문서 컨텐츠
+			<!DOCTYPE html>
+			<html>
+			<head>
+				<meta charset="utf-8" />
+ 				<title></title>
+			</head>
+			<body>
+				안녕하세요. <strong>생활코딩</strong>입니다.
+			</body>
+			</html>
+
+	HTML 문법 - 속성(attribute)
+		<a href="http://opentutorials.org" target="_blank">생활코딩</a>
+		href : hypertext reference
+		href, target : 속성명
+		"http://opentutorials.org/course/1", "_blank" : 속성값
+		target="_blank" : 새로운 창(tab)에서 띄움
+		target="_self" : 현재 창에서 띄움
+
+	HTML 문법 - 태그의 중첩
+		list : 그룹 구분 by <ul></ul> or <ol></ol>
+		<ul>
+			<li>html</li>
+			<li>css</li>
+			<li>javascript</li>
+		</ul>
+		<ul>
+			<li>php</li>
+			<li>MySQL</li>
+			<li>Apache</li>
+		</ul>
+
+	HTML 기타
+		w3c(world wide web 컨소시움) : html의 표준을 설정하는 국제기구
+		w3c 의장 = 팀버너스리
+		tag reference : tag 사전
+			http://opentutorials.org/course/1058
+
+	HTML 실습
+		Semantic Web : 의미가 잘 드러나는 웹 - HTML5
+			어떤 기능이 따로 있는 것은 아님 / 문서를 그 역할에 따라 구분하는 것
+			<header> <nav> <main> <section> <article> <aside> <footer>
+			<details> <summary>
+			<figure> <figcaption>
+			<mark> <time>
+		<header></header>  : 문서의 간판(header)에 해당하는 정보이다!
+		<nav></nav> : 문서의 navigation에 해당하는 정보이다!
+		<article></article> : 문서의 본문에 해당하는 정보이다!
+
+		index.html : 대문페이지 / 기본값 / 주소창에 index.html을 입력하지 않아도 자동적으로 전송됨
+
+CSS : style (Design HTML)
+	선택자(selector) - 서술(description)
+	박스모델 : content / padding / border / margin
+	 float : 이미지 주변을 텍스트가 감쌀 수 있도록
+	 	img { float: left; }
+	 	img { fload: right; }
+	<link rel="style.css" type="text/css" href="css/style.css">
+	=> 중복의 제거!!!
+
+PHP : 데이터베이스에서 정보를 가져와 새로운 html 파일을 완성한 후 이를 웹서버에게 전송하여, 웹서버가 웹브라우저의 요청에 응답할 수 있도록 도와줌
+웹브라우저가 php 파일을 요청할 경우, 웹서버는 자신이 php 파일을 처리할 수 없으므로, php interpreter에게 그 처리를 위임함 / php interpreter는 php 파일에 대한 처리 결과를 웹서버에게 전송하고, 웹서버는 그것을 웹브라우저에게 전송함
+
+PHP 설정 바꾸기
+php.ini 파일 찾기 : 브라우저에서 <?php phpinfo() ?> 실행 후 Loaded Configuration File 항목 찾음
+/Applications/mampstack-5.6.29-0/php/etc/php.ini
+1.display_error => On (off) : error message가 보이도록
+2.opcache.revalidate_freq => 0 (60) : 수정이 바로 반영되도록
+
+HTML/CSS : 정적인 언어 - 한번 코딩 하고 나면 바뀌지 않음
+Javascript/PHP : 동적인 언어 - 사용자의 액션에 따라 변화
+
+Javascript : html page를 동적으로 변화시킴!
+	html 을 제어!
+	html 내용을 추가/변경 하거나, html style을 변경
+	웹브라우저에서 작동
+	<script>...</script>
+	<script>document.write("Hello World")</script>
+	웹브라우저 쪽에서 처리되기 때문에, 소스코드에 그대로 출력됨
+	<script>document.write(10+10)</script> ===> 20
+	<script>document.write("10"+"10")</script> ===> 1010
+	디버깅 : 자바스크립트 콘솔 (cmd+alt+j)
+	변수 : 변하는 부분과 변하지 않는 부분을 구분하여, 변하는 부분에만 집중하기 위함
+		<script>
+			name = "egoing";
+			document.write("안녕하세요."+name);
+		</script>
+	비교
+		<script>
+			document.write(2==1); ===> false
+		</script>
+	조건문
+		<script>
+			result = (1==1);
+			if(result) {
+				document.write("참");
+			} else {
+				document.write("거짓");
+			}
+		</script>
+	로그인기능
+		<script>
+			password = prompt("비밀번호");
+			===> prompt("비밀번호") 부분이 먼저 실행되고, prompt에 입력된 값이 password 변수에 저장됨!!
+			if ( password == 1111 ) {
+				document.write("안녕하세요. 주인님");
+			} else {
+				document.write("뉘신지?");
+			}
+		</script>
+	반복문
+		<ul>
+		<script>
+			i = 0;
+			while(i < 10) {
+				document.write("<li>hello world</li>");
+				i = i + 1;
+			}
+		</script>
+		</ul>
+	배열
+		<script>
+			list = new Array("one", "two", "three");
+			document.write(list);
+			document.write(list[0]);
+			document.wirte(list.length);
+			for (i = 0 ; i < list.length; i++) {
+				document.write(list[i]);
+			}
+			i = 0;
+			while ( i < list.length ) {
+				document.write("<li>"+list[i]+"</li>");
+				i++;
+			}
+		</script>
+	함수 : 사용자정의 함수 / 내장 함수(built-in function)
+		<script>
+			function a() {
+				document.write("Hello JS Function");
+			}
+			a();
+			a();
+			a();
+		</script>
+		<script>
+			function a(input) {
+				return input + 1;
+			}
+			document.write(a(6));
+		</script>
+
+PHP : html 내용의 중복의 제거! - html template 생성
+	웹서버에서 작동
+	<?php ...; ?>
+	<?php echo "Hello world"; ?>
+	server 쪽에서 처리되기 때문에, 웹브라우저에서는 서버쪽에서 이미 처리된 결과값만 출력
+	소스코드에서는 결과값만 출력됨 / php 명령어가 소스코드에 보이지 않음
+	<?php echo 10+10; ?> ===> 20
+	<?php echo "10"+"10" ?> ===> 20
+	<?php echo "10"."10" ?> ===> 1010
+	PHP에서는 문자열을 합칠때에는 +가 아닌 .를 사용!!
+	디버깅 : /Applications/mampstack-5.6.29-0/apache2/logs/error.log
+	변수
+		<?php
+			$name = "egoing";
+			echo "안녕하세요.".$name;
+		?>
+	비교
+		<?php
+			$result = var_dump(2==1);
+			echo $result;
+			===> bool(false)
+
+			$result = (3==3);
+			echo $result;
+			===> 1
+
+			$result = (3==2);
+			echo $result;
+			===> ''
+		?>
+	조건문
+		<?php
+			$result = (2==2);
+			if($result) {
+				echo "참";
+			} else {
+				echo "거짓";
+			}
+		?>
+	로그인기능
+		* 8-1.php
+		<form method="get" action="8-2.php">
+			<p>비밀번호를 입력해주세요.</p>
+			<input type="text" name="password">
+			<input type="submit">
+		</form>
+
+		* 8-2.php // PHP가 특별하게 만든 변수 : $_GET["name"]
+		<? php
+			$password = $_GET["password"];
+			if ( $password == "1111" ) }
+				echo "환영합니다";
+			} else {
+				echo "뉘신지?";
+			}
+		?>
+	반복문
+		<ul>
+		<?php
+			$i = 0;
+			while($i < 10) {
+				echo "<li>hello world</li>";
+				$i = $i + 1;
+			}
+		?>
+		</ul>
+	배열
+		<?php
+		 	$list = array("one", "two", "three");
+		 	echo $list[0];
+		 	echo count($list);
+		 	$i = 0;
+		 	while( $i < count($list) ) {
+		 		echo "<li>".$list[$i]."</li>";
+		 		$i = $i + 1;
+		 	}
+		?>
+	함수
+	<?php
+		function a() {
+			echo "Hello PHP Function!";
+		}
+		a();
+	?>
+	<?php
+		function a ( $input ) {
+			return $input + 1;
+		}
+		echo a(6);
+	?>
+
+UI / API
+User Interface : 사용자 - 웹브라우저
+	일반 사용자가 사용하고자 하는 어플리케이션을 조작 제어할 수 있는 모든 요소
+Application Programming Interface : 웹어플리케이션 - 웹브라우저
+	개발자가 어플리케이션을 개발할 때 사용할 수 있는, 그것을 기반으로 어플리케이션을 개발할 수 있는 모든 것
+UI - 웹어플리케이션 - 웹브라우저 - 운영체제 - C - 어셈블리어 - 기계어 - 전자공학 - 전기공학 - 물리학
+
+자바스크립트 실습
+<body>
+	<input type="text" id="user_input">
+	<input type="button" value="submit" onclick="alert(document.getElementById('user_input').value)">
+</body>
+
+<style>
+	body.white {
+		background-color: white;
+		color: black;
+	}
+	body.black {
+		background-color: black;
+		color: white;
+	}
+</style>
+<body id="target">
+	<div id="control">
+		<input type="button" value="white" onclick="document.getElementById('target').className='black'">
+		<input type="button" value="black" onclick="document.getElementById('target').className='white'">
+	</div>
+</body>
+
+댓글 : disqus.com
+채팅 : tawk.to
+
+PHP
+url : localhost:8888/1.php?id=post&name=choi
+$id = $_GET['id'];
+$name = $_GET['name'];
+
+<?php include('1.txt') ?>
+<?php echo file_get_contents('1.txt') ?>
+<?php include($_GET['id'].'.txt') ?>
+<?php
+	if (isset($_GET['id'])) {
+		include($_GET['id'].'.txt');
+	}
+?>
+
+MySQL
+: mysql.php
+
+이미지업로드
+uploadcare.com
+<input type="hidden" role="uploadcare-uploader" />
+<script>UPLOADCARE_PUBLIC_KEY = "ff7215f80f4174d9ed83";</script>
+<script charset="utf-8" src="//ucarecdn.com/libs/widget/2.10.2/uploadcare.full.min.js"></script>
+<script>
+	// role = uploadcare-uploader 인 태그를 업로드 위젯으로 만들어라!
+	var singleWidget = uploadcare.SingleWidget( ' [role=uploadcare-uploader] ' );
+	// 그 위젯을 통해서 업로드가 끝났을 때,
+	singleWidget.onUploadComplete(function(info) {
+		// id 값이 description인 태그의 값 뒤에 업로드한 이미지 파일의 주소를 이미지 태그와 함께 첨부해라.
+		document.getElementById('form-description').value += '<img src="'+info.cdnUrl+'">'
+	});
+</script>
+
+보안
+: 좋은 습관은 자신도 모르게 자신을 비극 속에서 지켜줍니다!
+: 게시판 본문에 자바스크립트 코드를 쓸 수 있다면, 위험해질 수 있음
+
+HTML 태그 escaping
+<?php echo htmlspecialchars($row['description']); ?>
+<?php echo strip_tags($row['description'], '<a><h1><h2><h3><h4><h5><h6><p><div><ul><ol><li><img>'); ?>
+
+특수기호 escaping : sql 에서 유용함
+<?php  $name = mysqli_real_escape_string($conn, $_GET['name']); ?>
+
+라이브러리
+: 중복해서 사용되는 로직을 재사용 할 수 있도록 부품화(모듈화) 시킨것
+: 하나의 프로젝트에서 재사용
+: 자신의 여러 프로젝트에서 재사용
+: 모두의 프로젝트에서 재사용
+
+<?php
+	require('lib/db.php');
+	require('config/config.php');
+	$conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
+?>
+
+<!-- db.php -->
+<?php
+	function db_init($host, $duser, $dpw, $dname) {
+		$conn = mysqli_connect("$host", "$duser", "$dpw");
+		mysqli_select_db($conn, "$dname");
+		return $conn;
+	}
+ ?>
+
+ <!-- config.php -->
+ <?php
+ $config = arrary(
+ 	"host" => "localhost",
+ 	"duser" => "root",
+ 	"dpw" => "111111",
+ 	"dname" => "opentutorials"
+ 	);
+ ?>
+
+ 부트스트랩(bootstrap)
+
+ 홈페이지의 IP 알아보기 : ping opentutorials.org
+ 공인IP : 공유기 IP / 전세계적으로 유일해야 함
+ 사설IP : 공유기에 연결된 각각의 컴퓨터들의 IP / 공유기 내에서 유일하면됨
+ 하나의 공인 IP로 여러 개의 컴퓨터들이 인터넷을 사용할 수 있다!!
+ 공인IP로만 접속하면, 각각의 컴퓨터 서버에 도달할 수 없다!
+
+ ==> 해결 by PORT FORWARDING
+
+PORT : 서버로 들어가는 문 / 6만500개 정도의 포트가 존재
+PORT 마다 각각의 번호가 있는데, 8080 포트의 경우 그 포트를 통해 들어가면, 웹서버가 존재함
+192.168.0.1 : 관리자
+외부포트 : 80 (외부에서 공유기로 들어오는 포트)
+내부포트 : 8080 (맥의경우) (공유기에서 내 컴퓨터로 들어오는 포트)
+
+상대경로
+/ : 최상위 디렉토리
+../ : 부모 디렉토리
+./ : 현재 디렉토리
+<a href="/index.php"> : 최상위 디렉토리의 index.php
+<a href="../index.php"> : 부모 디렉토리의 index.php
+<a href="./index.php"> : 현재 디렉토리의 index.php
+<a href="index.php"> : 현재 디렉토리의 index.php
+<a href="/sub/sub.php"> : 최상위 디렉토리 내에 있는 sub 폴더에 있는 sub.php
+<a href="./sub/sub.php"> : 현재 디렉토리 내에 있는 sub 폴더에 있는 sub.php
+<a href="sub/sub.php"> : 현재 디렉토리 내에 있는 sub 폴더에 있는 sub.php
+
+대문페이지 : ip주소 외에 아무 것도 쓰지 않으면 기본적으로 index.html로 접속됨
+
+유동IP (dynamic address)
+: 인터넷을 잘 쓰지 않으면, 통신사에서 기존의 아이피를 회수해서 다른 새로운 사용자에게 줌
+: 인터넷을 다시 쓰게 되면, 새로운 아이피를 통신사로부터 받게 됨
+: 통신사가 사용할 수 있는 아이피의 개수가 한정적이기 때문에
+: 아이피가 바뀔 수 있기 때문에, 개인 컴퓨터로 웹서버를 운영하는 것은 쉽지 않다.
+==> DDNS(Dynamic DNS)
+	: 컴퓨터에 프로그램을 설치하면, 컴퓨터의 웹서버의 아이피 주소가 몇 번인지를 주기적으로 DNS에 전달해서 업데이트 함
+	: 아이피 주소가 바뀌면, DNS의 IP 주소도 변경됨
+	: 사용자는 도메인 네임으로 접속하고, DDNS는 도메인과 호스트의 IP를 지속적으로 동기화시키고 있기 때문에, 사용자는 도메인 네임을 통해서 올바르게 접속할 수 있다. (아이피 주소가 바뀌어도)
+	: DDNS 설치
+		* iptime
+		iptime - 관리자 <!-- iptime을 통해 도메인네임을 얻을 수 있고, 통신사에 의해 공유기의 아이피 번호가 변경된다 하더라도, DDNS를 통해 업데이트 됨 -->
+		고급설정 - 특수기능 - DDNS설정 - 서비스공급자 - ipTIME DDNS
+		호스트이름(도메인주소 - egoing.iptime.org ) - 도메인ID/비밀번호 설정
+
+		* 개인 도메인의 경우 DDNS 서비스
+		freedns.afraid.org (무료)
+		자가서버를 운영하는 경우, 컴퓨터의 아이피 주소가 변경된다 하더라도, DDNS 서비스를 통해, 도메인 네임으로 접속한 사용자들이 변경된 아이피 주소로 접속될 수 있도록 도와줌
+
+호스팅
+: 웹호스팅 / 서버호스팅 / 클라우드호스팅
+클라우드호스팅 : 가상화 / 종량제
+
+컴퓨터 - 운영체제(Linux/OS/Window) - Platform(PHP/MySQL/Apache) - SOFTWARE
+IaaS(Infrastructure As A Service) : 컴퓨터와 운영체제 제공 (서버호스팅)
+PaaS(Platform As A Service) : 컴퓨터와 운영체제와 플랫폼 제공 (웹호스팅)
+SaaS(Software As A Service) : 모두 제공 (워드프레스)
+
+성장(Scalability)
+scaleUp
+scaleOut
+웹서버 + PHP + MySQL
+=> 웹서버 + PHP -------------- MySQL
+=> 웹서버 -------------- PHP -------------- MySQL
+=> 웹서버 -------------- PHP -------------- MySQL Master(쓰기) ------------- MySQL Slave(읽기)

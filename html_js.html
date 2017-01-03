@@ -6,31 +6,31 @@ var item,
 		item2;
 
 // variable datatype
-typeof false // boolean
-typeof "false" // string
+typeof false 	// boolean
+typeof "false" 	// string
 
 // 5 primary datatype
-	var name = "John", // string
-			age = 32, // number : integer
-			height = 180.2, // number : float
-			married = false, // boolean
-			age = null, // null 
-			car; // undefined
+	var name = "John", 	// string
+		age = 32, 			// number : integer
+		height = 180.2, 	// number : float
+		married = false, 	// boolean
+		age = null, 			// null
+		car; 				// undefined
 
 // 2 composite datatype
-// list or array
+	// list or array
 	var li1 = ["John", "Marie", false, 32];
 	var li2 = [];
 	var li3 = new Array(12, false);
 		// properties
 			li1.length
 		// methods
-			li1.push("Hi");  // 마지막에 추가됨
-			list.unshift(10);  // 처음에 추가됨
-			li1.pop();  // 마지막 하나 뽑아냄
-			li1.shift();  // 처음 하나 뽑아냄
-			li1.indexOf(32);  // 위치 확인
-	
+			li1.push("Hi");  		// 마지막에 추가됨
+			list.unshift(10);  	// 처음에 추가됨
+			li1.pop();  			// 마지막 하나 뽑아냄
+			li1.shift();  			// 처음 하나 뽑아냄
+			li1.indexOf(32);  	// 위치 확인
+
 	// object
 	var ob1 = new Object();
 	var ob2 = {};
@@ -56,12 +56,12 @@ typeof "false" // string
 +, -, *, /
 +=, -=, *=, /=
 x++, x--, ++x, --x
->, <, >=, <= 
+>, <, >=, <=
 &&, ||
 !x
 +"3", +true, +false
-+"3"+3 // 6
-"3"+3 // "33"
++"3"+3 	// 6
+"3"+3 		// "33"
 "abc" + "def"
 
 // if
@@ -87,13 +87,12 @@ while (i < 10) {
 }
 </script>
 
-
 <script>
     document.getElementById("id");
-    document.getElementsByTagName("tagName"); //array
-    document.getElementsByClassName("className"); //array
+    document.getElementsByTagName("tagName"); 		//array
+    document.getElementsByClassName("className"); 	//array
     document.querySelector("css selector");
-    document.qeurySelectorAll("css selector"); //array
+    document.qeurySelectorAll("css selector"); 			//array
 
     var salsMotto = document.getElementById("salsMotto");
     salsMotto.innerHTML = "<em>Math is cool<em>";
@@ -126,10 +125,10 @@ while (i < 10) {
     imgEl.className += "cat";
     document.body.appendChild(imgEl);
 
-    var planetEl = document.createElement("div"); // <div></div>
-    planetEl.className += "planet"; // <div class="planet"></div>
-    planetEl.style.backgroundColor = "yellow"; // <div class="planet" style="background-color:yellow"></div>
-    document.body.appendChild(planetEl); // <body> .... <div class="planet" style="background-color:yellow"></div></body>
+    var planetEl = document.createElement("div"); 	// <div></div>
+    planetEl.className += "planet"; 					// <div class="planet"></div>
+    planetEl.style.backgroundColor = "yellow"; 		// <div class="planet" style="background-color:yellow"></div>
+    document.body.appendChild(planetEl); 			// <body> .... <div class="planet" style="background-color:yellow"></div></body>
 </script>
 
 //addEventListener - click
@@ -139,7 +138,7 @@ while (i < 10) {
 <script>
     // 1. Find and store the element we want to listen to events on.
     var clickerButton = document.getElementById("clicker");
-    
+
     // 2. Define the function that will respond to the event.
     var onButtonClick = function() {
         clickerButton.textContent = "Oh wow, you clicked me!";
@@ -159,7 +158,7 @@ KeyboardEvent : keydown, keypress, keyup
 FormEvent : focus, blur, change, submit
 WindowEvent : scroll, resize, hashchange, load, unload
 
-//addEventListener - mousemove    
+//addEventListener - mousemove
 <style>
   .beard {
     background: black;
@@ -294,13 +293,13 @@ var mouseEnterContainer = function() {
 
 //keybordEvent
 <body>
-	<input type="text" size="40" onkeypress="myFunction(event)">  
+	<input type="text" size="40" onkeypress="myFunction(event)">
 	<!-- onkeypress / onkeydown / onkeyup -->
 	<p id="demo"></p>
 	<script>
 	var myFunction = function(event) {
-		var x = event.which; 
-		/* event.which = event.keyCode = event.charCode : code*/  
+		var x = event.which;
+		/* event.which = event.keyCode = event.charCode : code*/
 		/* event.key : character */
 		document.getElementById("demo").textContent = x;
 	}
@@ -329,7 +328,7 @@ var mouseEnterContainer = function() {
 			if (currentTime > 0) {
 				countdown.textContent = currentTime - 1;
 			} else {
-	    	window.clearInterval(timer);	
+	    	window.clearInterval(timer);
 			}
 		};
 		// Step 3: Call that on an interval
@@ -408,4 +407,4 @@ var mouseEnterContainer = function() {
 		};
 		walkTheCat();
 	</script>
-</body> 
+</body>

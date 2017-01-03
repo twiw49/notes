@@ -1,0 +1,62 @@
+a / i / o => insert 모드로 전환
+i => 커서 앞
+a => 커서 뒤 
+shift i => 현재라인 맨 앞
+shift a => 현재라인 맨 뒤
+o => 현재 라인 아래
+shift o => 현재 라인 위
+
+esc => command 모드로 전환
+
+j / k => 아래 / 위 이동
+h / l => 왼쪽 / 오른쪽 이동
+w / b => 단어 이동
+0 => 라인 맨 앞으로 이동
+$ => 라인 맨 끝으로 이동
+1 shift g => 파일 맨 첫 줄로 이동
+$ shift g => 파일 맨 마지막 줄로 이동
+shift h => 현재 화면 첫 줄로 이동
+shift m => 현재 화면 중간으로 이동
+shift l => 현재 화면 마지막 줄로 이동
+
+yy => copy a line
+(num)yy => copy (num) lines
+yw => copy a word
+
+x => delete a character
+shift x => 현재 커서 위치의 앞 글자 지움
+dd => delete a line
+(num)dd => delete (num) lines
+dw => delete a word
+
+p => paste (한 줄 아래에 붙임)
+shift p => paster (한 줄 위에 붙임)
+u => undo
+shift r => replace
+/ => 검색
+shift j => 라인 붙이기
+
+v => visual mode
+shift v => visual line
+y => copy
+p => past
+d => delete
+shift u => 대문자로
+u => 소문자로
+shift j => 한 줄의 라인으로 붙이기
+
+shift : q => 그대로 종료 (변경 내용이 없을 때)
+shift : q! => 저장하지 않고 종료 (변경 내용이 있을 때)
+shift : w => 현재 파일에 저장)
+shift : w (file_name) => 문서의 내용을 파일명에 저장 / 현재 파일에는 저장되지 않음
+shift : wq => 현재 파일에 저장하고 종료
+shift : x => 현재 파일에 저장하고 종료
+shift : wq (file_name) 
+	=> 기존에 없는 파일명일 경우, 
+	=> 새로운 파일이 생성되고 거기에 저장됨 / 현재 파일에는 저장되지 않음
+shift : wq! (file_name)
+	=> 기존에 있는 파일명일 경우,
+	=> 그 파일에 덮어씌워 저장됨 / 현재 파일에는 저장되지 않음
+
+shift : set nu => 라인에 번호매기
+shift : (num) => 라인 수로 이동
